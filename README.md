@@ -49,12 +49,11 @@ Search Performance Analysis is a Cribl app for comparing how fast Cribl Search a
 
 ## Installation
 
-### Install From Marketplace or URL
-1. Go to Apps in your Cribl environment.
-2. Choose the Marketplace or import from URL option.
-3. If the app is available in the Cribl Marketplace, install it directly from there.
-4. If the app is distributed as a Marketplace-hosted URL, use the URL to import it.
-5. Review the app details and complete installation.
+### Install From the Cribl Marketplace (recommended)
+1. In Cribl, go to **Apps > View All** and open the **Marketplace**.
+2. Search for **Search Performance Analysis** and select it.
+3. Review the requested permissions (see [Permissions](#permissions)) and select **Install**.
+4. Share the app with the users who will run benchmarks.
 
 ### Install From Git
 1. Log in to Cribl and go to **Apps > View All**.
@@ -62,8 +61,8 @@ Search Performance Analysis is a Cribl app for comparing how fast Cribl Search a
 3. Paste the repository URL `https://github.com/simondev65/cribl-app-search-performance-analysis.git` and enter `latest` as the tag (or a version tag such as `v1.0.1`).
 4. Select **Import**, review the app details and complete installation.
 
-### If The App Is Not Yet In The Cribl Marketplace
-1. Get the `.tgz` app package for the version you want.
+### Install From a Release Package
+1. Download the `.tgz` app package for the version you want from the [GitHub releases](https://github.com/simondev65/cribl-app-search-performance-analysis/releases).
 2. In Cribl, go to Apps and choose import from file.
 3. Upload the `.tgz` file.
 4. Review the app details and complete installation.
@@ -111,7 +110,7 @@ There is nothing to configure at install time. Each benchmark is set up in the a
 
 ## Permissions
 
-The app needs to list datasets, run searches and read their statistics. If dataset listing is denied, the app shows the error on the dataset step. If a single search fails, it is marked as failed and the run continues.
+The app declares only the Search endpoints below in `config/policies.yml`, with the minimum methods each call needs. It needs to list datasets, run searches and read their statistics. If dataset listing is denied, the app shows the error on the dataset step. If a single search fails, it is marked as failed and the run continues.
 
 ### Cribl API Endpoints Used
 
@@ -145,10 +144,22 @@ Runs and settings are stored in the app's key-value store and are visible to eve
 
 Nothing is written to your datasets. Deleting a run removes it permanently.
 
+## Security
+
+* **Authentication and authorization.** The app never sees credentials. Cribl's app proxy adds the signed-in user's session to every API call, and each call is limited to the permissions declared in `config/policies.yml` and the user's own Cribl role.
+* **Minimum permissions.** Read access to the Search dataset list, starting search jobs, reading a job's status, metrics and results, and cancelling a job. The app cannot change datasets, Search configuration or any other product configuration.
+* **Secrets.** The app stores no secrets, tokens or credentials.
+* **External hosts.** None. `config/proxies.yml` declares no domains, so the platform blocks any outbound call.
+* **Customer data.** Search results are only counted, never exported or sent anywhere. The one sampled event per dataset is used in the browser to suggest field names, and only the chosen field names are saved.
+* **Known vulnerabilities.** None known. Dependencies are checked with `npm audit` before each release.
+* **Reporting a vulnerability.** Use [GitHub private vulnerability reporting](https://github.com/simondev65/cribl-app-search-performance-analysis/security/advisories/new). Please do not open a public issue for security problems.
+
 ## Support
 
-### Internal Only
-This app is intended for solution engineering, proof-of-value and benchmarking work. It is not a generally supported production app. Contact the maintainer, Simon Duchene, with questions.
+* **Maintainer:** Simon Duchene.
+* **Bugs and feature requests:** [GitHub Issues](https://github.com/simondev65/cribl-app-search-performance-analysis/issues).
+* **Security issues:** see [Security](#security).
+* Critical security fixes are delivered within 10 days and high-severity fixes within 4 weeks, per the Cribl Marketplace remediation SLAs.
 
 ## Known Limitations
 
@@ -198,12 +209,13 @@ tests/
 
 ## Versioning And Releases
 
-* Semantic versioning.
+* Semantic versioning. Release notes and packages are on [GitHub releases](https://github.com/simondev65/cribl-app-search-performance-analysis/releases).
+* Upgrades keep all saved runs, field mappings and settings.
 * Run data is versioned with the app; older runs remain readable.
 
 ## License
 
-This app is licensed under the terms in [LICENSE](./LICENSE).
+This app is licensed under the [Apache License 2.0](./LICENSE).
 
 ## App Metadata
 
@@ -211,18 +223,18 @@ This app is licensed under the terms in [LICENSE](./LICENSE).
 |---|---|
 | App Name | Search Performance Analysis |
 | App ID | search-performance-analysis |
-| Version | 1.0.0 |
+| Version | 1.0.2 |
 | Author | simon duchene |
-| Support Model | internal-only |
-| Support Label | Internal Only |
-| Support Contact | Simon Duchene |
-| License | See LICENSE |
+| Support Model | community |
+| Support Label | Community Supported |
+| Support Contact | [GitHub Issues](https://github.com/simondev65/cribl-app-search-performance-analysis/issues) |
+| License | Apache-2.0 |
 | License File | [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt) |
 | Product Tags | search |
 | Category | Performance |
 | Audience | admin, platform-owner |
-| Availability | preview |
+| Availability | general |
 | Requires External Access | no |
-| Repository | |
-| Documentation | |
+| Repository | https://github.com/simondev65/cribl-app-search-performance-analysis |
+| Documentation | https://github.com/simondev65/cribl-app-search-performance-analysis#readme |
 | README Schema Version | 1.0 |

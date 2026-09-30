@@ -5,8 +5,8 @@ policies:
   - object: '/m/default_search/search/datasets'
     actions: ['GET']
   - object: '/m/default_search/search/jobs'
-    actions: ['GET', 'POST']
+    actions: ['POST']
   - object: '/m/default_search/search/jobs/*'
-    actions: ['GET', 'POST', 'PATCH']
+    actions: ['GET']
   - object: '/m/default_search/search/jobs/*/*'
     actions: ['GET', 'POST']
