@@ -1,0 +1,12 @@
+# Product API access declaration. Admins see exactly which platform resources the app uses.
+# The app only talks to Cribl Search: it lists datasets, starts search jobs one at a time,
+# reads their status, metrics and result counts, and cancels a job when you press Stop.
+policies:
+  - object: '/m/default_search/search/datasets'
+    actions: ['GET']
+  - object: '/m/default_search/search/jobs'
+    actions: ['GET', 'POST']
+  - object: '/m/default_search/search/jobs/*'
+    actions: ['GET', 'POST', 'PATCH']
+  - object: '/m/default_search/search/jobs/*/*'
+    actions: ['GET', 'POST']
