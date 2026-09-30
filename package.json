@@ -1,0 +1,45 @@
+{
+  "name": "search-performance-analysis",
+  "private": true,
+  "version": "1.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview",
+    "package": "npm run build && node scripts/package.mjs",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@capra/core": "^1.13.0",
+    "@capra/dx-tokens-postcss-plugin": "^0.4.0",
+    "@capra/icons": "^1.10.0",
+    "@capra/theme": "^1.5.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.1.0",
+    "oxlint": "^1.79.0",
+    "typescript": "~6.0.2",
+    "vite": "^8.2.2",
+    "vitest": "^5.0.3"
+  },
+  "displayName": "Search Performance Analysis",
+  "cribl": {
+    "type": "app",
+    "createAppScriptVersion": "0.5.0"
+  },
+  "tags": {
+    "product": [
+      "search"
+    ]
+  },
+  "description": "Benchmark Cribl Search on two datasets side by side: run the same searches over the same time windows, one at a time, and compare execution time, CPU and data scanned.",
+  "author": "simon duchene"
+}
