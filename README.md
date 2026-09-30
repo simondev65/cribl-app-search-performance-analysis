@@ -199,7 +199,6 @@ tests/
 ## Versioning And Releases
 
 * Semantic versioning.
-* To publish a release for Import from Git, run `npm run package` then `npm run release:git`. This commits the built `static/` and `default/` folders, tags `v<version>` and moves the `latest` tag.
 * Run data is versioned with the app; older runs remain readable.
 
 ## License
