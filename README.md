@@ -56,6 +56,12 @@ Search Performance Analysis is a Cribl app for comparing how fast Cribl Search a
 4. If the app is distributed as a Marketplace-hosted URL, use the URL to import it.
 5. Review the app details and complete installation.
 
+### Install From Git
+1. Log in to Cribl and go to **Apps > View All**.
+2. Select **Add App > Import from Git**.
+3. Paste the repository URL `https://github.com/simondev65/cribl-app-search-performance-analysis.git` and enter `latest` as the tag (or a version tag such as `v1.0.1`).
+4. Select **Import**, review the app details and complete installation.
+
 ### If The App Is Not Yet In The Cribl Marketplace
 1. Get the `.tgz` app package for the version you want.
 2. In Cribl, go to Apps and choose import from file.
@@ -193,6 +199,7 @@ tests/
 ## Versioning And Releases
 
 * Semantic versioning.
+* To publish a release for Import from Git, run `npm run package` then `npm run release:git`. This commits the built `static/` and `default/` folders, tags `v<version>` and moves the `latest` tag.
 * Run data is versioned with the app; older runs remain readable.
 
 ## License
